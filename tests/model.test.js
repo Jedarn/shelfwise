@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {makeState,validEAN,dayKey,recordMovement,totals,createOrder,receiveOrder,suggestion,saveProduct} from '../src/model.js';
+const products=JSON.parse(readFileSync(new URL('../src/products.json',import.meta.url)));
+test('all sourced EANs have correct check digits',()=>{for(const p of products)assert.ok(validEAN(p.ean),p.name);assert.equal(validEAN('7038010001643'),false)});
+test('Oslo business dates cross UTC midnight correctly',()=>assert.equal(dayKey(new Date('2026-11-03T23:30:00Z')),'2026-11-04'));
+test('sale reduces stock and records historical unit price',()=>{const s=makeState(products),p=s.products[0],before=p.stock;const row=recordMovement(s,{type:'sale',productId:p.id,quantity:2,date:dayKey()});p.price=99;assert.equal(p.stock,before-2);assert.equal(row.unitPrice,23.9)});
+test('waste reduces stock and keeps a reason',()=>{const s=makeState(products),p=s.products[0];recordMovement(s,{type:'waste',productId:p.id,quantity:3,date:dayKey(),reason:'Expired'});assert.equal(p.stock,11);assert.equal(s.waste[0].reason,'Expired');assert.equal(totals(s.waste).units,3)});
+test('invalid movements never mutate inventory',()=>{for(const qty of [0,-1,1.5,999,NaN]){const s=makeState(products),old=JSON.stringify(s);assert.throws(()=>recordMovement(s,{type:'sale',productId:s.products[0].id,quantity:qty,date:dayKey()}));assert.equal(JSON.stringify(s),old)}});
+test('incoming orders prevent duplicate replenishment',()=>{const s=makeState(products);createOrder(s);assert.equal(suggestion(s,s.products[0]),0);assert.throws(()=>createOrder(s))});
+test('delivery is received once',()=>{const s=makeState(products);createOrder(s);receiveOrder(s,s.orders[0].id);assert.equal(s.products[0].stock,40);assert.throws(()=>receiveOrder(s,s.orders[0].id));assert.equal(s.products[0].stock,40)});
+test('stock counts are logged and duplicate EANs rejected',()=>{const s=makeState(products),p=s.products[0];saveProduct(s,{...p,stock:0,price:0},p.id);assert.equal(s.counts[0].after,0);assert.equal(p.price,0);assert.throws(()=>saveProduct(s,{...p}));});
+test('new products can be added and searched by EAN',()=>{const s=makeState(products);s.products.pop();saveProduct(s,products.at(-1));assert.equal(s.products.at(-1).ean,products.at(-1).ean)});
+test('historical totals do not change when product price changes',()=>{const s=makeState(products),before=totals(s.sales);s.products[0].price=300;assert.deepEqual(totals(s.sales),before)});

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "7038010001642",
+    "ean": "7038010001642",
+    "name": "TINE Lettmelk 1% 1L",
+    "category": "Dairy",
+    "placement": "A1 · Shelf 2",
+    "price": 23.9,
+    "stock": 14,
+    "target": 40,
+    "image": "assets/7038010001642.jpg",
+    "source": "https://meny.no/varer/meieri-egg/melk/lettmelk/lettmelk-1-0-7038010001642",
+    "imageSource": "https://bilder.ngdata.no/7038010001642/meny/large.jpg"
+  },
+  {
+    "id": "7038010001918",
+    "ean": "7038010001918",
+    "name": "TINE Lettmelk 0.5% 1L",
+    "category": "Dairy",
+    "placement": "A1 · Shelf 3",
+    "price": 21.9,
+    "stock": 22,
+    "target": 36,
+    "image": "assets/7038010001918.jpg",
+    "source": "https://meny.no/varer/meieri-egg/melk/lettmelk/lettmelk-0-7-7038010001918",
+    "imageSource": "https://bilder.ngdata.no/7038010001918/meny/large.jpg"
+  },
+  {
+    "id": "7038010014604",
+    "ean": "7038010014604",
+    "name": "Norvegia 26% 500g",
+    "category": "Dairy",
+    "placement": "A2 · Shelf 1",
+    "price": 90,
+    "stock": 18,
+    "target": 24,
+    "image": "assets/7038010014604.jpg",
+    "source": "https://meny.no/varer/ost/guloster/gulost/norvegia-27-7038010014604",
+    "imageSource": "https://bilder.ngdata.no/7038010014604/meny/large.jpg"
+  },
+  {
+    "id": "7039010019804",
+    "ean": "7039010019804",
+    "name": "Grandiosa Original 575g",
+    "category": "Frozen",
+    "placement": "F1 · Freezer 2",
+    "price": 64.9,
+    "stock": 32,
+    "target": 24,
+    "image": "assets/7039010019804.jpg",
+    "source": "https://meny.no/varer/middag/pizza/pizza/grandiosa-pizza-7039010019804",
+    "imageSource": "https://bilder.ngdata.no/7039010019804/meny/large.jpg"
+  },
+  {
+    "id": "7021010001057",
+    "ean": "7021010001057",
+    "name": "Nugatti Original 500g",
+    "category": "Pantry",
+    "placement": "B3 · Shelf 2",
+    "price": 43.9,
+    "stock": 27,
+    "target": 20,
+    "image": "assets/7021010001057.jpg",
+    "source": "https://meny.no/varer/palegg-frokost/sotpalegg/sjokoladepalegg/nugatti-7021010001057",
+    "imageSource": "https://bilder.ngdata.no/7021010001057/meny/large.jpg"
+  },
+  {
+    "id": "7622400974434",
+    "ean": "7622400974434",
+    "name": "Freia Kvikk Lunsj 47g",
+    "category": "Snacks",
+    "placement": "C1 · Checkout",
+    "price": 19.9,
+    "stock": 46,
+    "target": 60,
+    "image": "assets/7622400974434.jpg",
+    "source": "https://joker.no/varer/snacks-godteri/sjokolade/kvikk-lunsj-7622400974434",
+    "imageSource": "https://bilder.ngdata.no/7622400974434/kmh/large.jpg"
+  }
+]
