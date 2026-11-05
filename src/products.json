@@ -76,5 +76,18 @@
     "image": "assets/7622400974434.jpg",
     "source": "https://joker.no/varer/snacks-godteri/sjokolade/kvikk-lunsj-7622400974434",
     "imageSource": "https://bilder.ngdata.no/7622400974434/kmh/large.jpg"
+  },
+  {
+    "id": "7038010003813",
+    "ean": "7038010003813",
+    "name": "TINE IsKaffe Cappuccino 330ml",
+    "category": "Beverages",
+    "placement": "A3 · Shelf 2",
+    "price": 22.9,
+    "stock": 24,
+    "target": 36,
+    "image": "assets/7038010003813.jpg",
+    "source": "https://meny.no/varer/drikke/iskaffe/iskaffe-cappuccino-7038010003813",
+    "imageSource": "https://bilder.ngdata.no/7038010003813/meny/large.jpg"
   }
 ]

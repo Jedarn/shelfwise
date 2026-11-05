@@ -47,3 +47,10 @@ Retrieved 2026-11-04. Names, EANs and package images are reference data. Prices 
 ## Barcode decoder
 
 ZXing Browser: https://github.com/zxing-js/browser (MIT). ZXing Library: https://github.com/zxing-js/library (Apache-2.0). Dependency versions are locked in package-lock.json.
+
+## TINE IsKaffe Cappuccino 330ml
+
+- EAN: `7038010003813`
+- Source: https://meny.no/varer/drikke/iskaffe/iskaffe-cappuccino-7038010003813
+- Image: https://bilder.ngdata.no/7038010003813/meny/large.jpg
+- Retrieved: 2026-11-04. Store price and quantities are editable sample data.

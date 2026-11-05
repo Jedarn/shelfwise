@@ -41,3 +41,10 @@ export function saveProduct(state,input,id){
  if(id){const old=state.products.find(x=>x.id===id);if(!old)throw new Error('Unknown product.');if(old.stock!==p.stock)state.counts.push({productId:id,date:dayKey(),before:old.stock,after:p.stock});Object.assign(old,p)}
  else state.products.push({...p,id:newId(),image:'',source:'',imageSource:''});
 }
+
+// Add the newly introduced product without resetting an existing store or duplicating EANs.
+export function mergeCatalogueUpdates(state,catalogue){
+ const coffee=catalogue.find(p=>p.ean==='7038010003813');
+ if(coffee&&!state.products.some(p=>p.ean===coffee.ean))state.products.push(structuredClone(coffee));
+ return state;
+}

@@ -2,6 +2,21 @@
 
 A self-hostable retail inventory portfolio project for Jedar Nori. Real Norwegian product references, locally stored product images, EAN search, camera barcode scanning, editable stock and placement, daily sales, waste (svinn), replenishment and receiving.
 
+## Version 2.1: English / Norwegian and cappuccino
+
+Use the Language / Språk selector in the top bar to choose English or Norsk (bokmål). Your choice is saved in the browser. Navigation, forms, alerts, scanner guidance, categories and waste reasons are translated. Product names, EANs and your own placement text remain as entered. Currency formatting follows the selected language; business dates remain in the Oslo timezone.
+
+TINE IsKaffe Cappuccino 330ml (EAN **7038010003813**) is included with a local product photo. Existing saved catalogues receive this item without resetting previous stock, sales, waste or orders. An existing item with that EAN is preserved. On an existing installation, its sales history starts empty until sales are recorded; a fresh demo gets sample history.
+
+### Updating your Windows project
+
+1. Stop the running server with Ctrl+C.
+2. Download and extract the updated ZIP. Open the inner `shelfwise` folder — the one containing `package.json` and `package-lock.json`.
+3. Run `npm ci`, then `npm run dev`.
+4. Open the same localhost address and port as before to reuse browser-saved data. If you change browser or origin, export/import a JSON backup from About.
+
+Do not reset the demo to get the new coffee: it is added automatically. If you changed source code yourself, compare your changes before replacing your project folder.
+
 ## Run locally
 
 Install Node.js 22 LTS or newer, open this folder in VS Code, then run:
