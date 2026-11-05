@@ -1,0 +1,72 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+
+name: Build and deploy Shelfwise to Azure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Shelfwise
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test --if-present
+
+      - name: Upload production website
+        uses: actions/upload-artifact@v4
+        with:
+          name: shelfwise-dist
+          path: dist/
+          if-no-files-found: error
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download website
+        uses: actions/download-artifact@v4
+        with:
+          name: shelfwise-dist
+          path: ./site
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_96C7A75931604977B68FE4DF30B92F79 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_43741E1DA67040289226C614FA54C744 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7386A8C85D7A47A7BB31B383A5A680F3 }}
+
+      - name: Deploy Shelfwise
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: Shelfwise
+          slot-name: Production
+          package: ./site
